@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Sentiment Dashboard</title>
+    <link rel="stylesheet" href="../static/css/results.css">
+</head>
+<body>
+    <div class="dashboard">
+        <header>
+            <h1>📊 Reddit Sentiment Dashboard</h1>
+            <p class="subtext">Visualizing emotions from Reddit discussions</p>
+        </header>
+
+        <main class="grid-container">
+            <!-- Top Row: Pie Chart & Bar Graph -->
+            <div class="grid-top">
+                <div class="card">{{ pie_html | safe }}</div>
+                <div class="card">{{ bar_html | safe }}</div>
+            </div>
+
+            <!-- Second Row: Violin Plot -->
+            <div class="chart-full">
+                <h2>Sentiment Score Distribution</h2>
+                <div class="chart">{{ violin_html | safe }}</div>
+            </div>
+
+            <!-- Third Row: Sentiment Over Time -->
+            <div class="chart-full">
+                <h2>Sentiment Counts Over Time</h2>
+                <div class="chart">{{ sentiment_over_time_html | safe }}</div>
+            </div>
+
+            <!-- Fourth Row: Average Scores Over Time -->
+            <div class="chart-full">
+                <h2>Average Sentiment Scores Over Time</h2>
+                <div class="chart">{{ avg_scores_daily_html | safe }}</div>
+            </div>
+
+            <!-- Fifth Row: Comment Volume Over Time -->
+            <div class="chart-full">
+                <h2>Comment Volume Over Time (Hourly)</h2>
+                <div class="chart">{{ comments_over_time_html | safe }}</div>
+            </div>
+
+            <!-- Sixth Row: Heatmap of Negative Sentiment -->
+            <div class="chart-full">
+                <h2>Negative Sentiment Heatmap (Hour x Weekday)</h2>
+                <div class="chart">{{ heatmap_neg_html | safe }}</div>
+            </div>
+
+            <!-- Bottom Row: Word Clouds -->
+            <div class="wordclouds">
+                <div class="cloud"><h3>Positive</h3><img src="{{ wordclouds['Positive'] }}" alt="Positive Wordcloud" /></div>
+                <div class="cloud"><h3>Neutral</h3><img src="{{ wordclouds['Neutral'] }}" alt="Neutral Wordcloud" /></div>
+                <div class="cloud"><h3>Negative</h3><img src="{{ wordclouds['Negative'] }}" alt="Negative Wordcloud" /></div>
+            </div>
+        </main>
+
+        <footer>
+            <p>Built with ❤️ Flask + Plotly + WordCloud</p>
+        </footer>
+    </div>
+</body>
+</html>

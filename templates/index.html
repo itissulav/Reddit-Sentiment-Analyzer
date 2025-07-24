@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Reddit Sentiment Analyzer</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}" />
+  <script src="{{ url_for('static', filename='js/index.js') }}" defer></script>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>🔍 Reddit Sentiment Analyzer</h1>
+      <p class="subtitle">Unlock insights from Reddit threads with AI-powered sentiment analysis.</p>
+    </header>
+
+    <section class="form-section">
+      <form method="POST" id="analyze-form">
+        <label for="url">Paste a Reddit Thread URL:</label>
+        <input type="text" name="url" id="url" placeholder="https://www.reddit.com/r/apple/comments/xyz123/thread-title/" required />
+        <button type="submit">Analyze Now</button>
+      </form>
+      {% if error %}
+        <p class="error">{{ error }}</p>
+      {% endif %}
+    </section>
+
+    <section id="loading-bar" class="hidden">
+      <div class="progress-bar">
+        <div class="progress"></div>
+      </div>
+      <p class="loading-text">🔄 Fetching comments and analyzing sentiment... hang tight!</p>
+    </section>
+
+    <section class="info">
+      <h2>🔧 What does this tool do?</h2>
+      <p>
+        Our Reddit Sentiment Analyzer allows you to gain deep insights into the emotional tone of any Reddit thread. We scrape all the comments and use RoBERTa, a powerful NLP model, to classify them as <strong>Positive</strong>, <strong>Neutral</strong>, or <strong>Negative</strong>.
+      </p>
+
+      <h3>💡 Features:</h3>
+      <ul>
+        <li>📊 Sentiment distribution pie chart</li>
+        <li>📈 Confidence scores and violin plots</li>
+        <li>🕐 Timeline of comments and emotions</li>
+        <li>🌐 Word clouds to visualize conversation topics</li>
+        <li>🔥 Heatmap of negativity by hour & weekday</li>
+      </ul>
+
+      <h3>🧠 Powered By:</h3>
+      <ul>
+        <li>🤖 RoBERTa NLP model</li>
+        <li>🐍 Python & Flask</li>
+        <li>📦 Plotly + WordCloud</li>
+      </ul>
+    </section>
+
+    <footer>
+      <p>Crafted with ❤️ by Sulav Paudel using Flask, Transformers, and Plotly</p>
+    </footer>
+  </div>
+</body>
+</html>
